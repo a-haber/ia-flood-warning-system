@@ -22,8 +22,9 @@ def stations_by_distance(stations, p):
     for station in stations:
         coords = station.coord
         distance = haversine(coords, p) # use haversine library to calculate distance in km
-        stationList.append((station.name, distance))
+        stationList.append((station.name, station.town, distance))
     
     #sort list by distance
+    stationList = sorted_by_key(stationList, 2)
 
     return stationList
