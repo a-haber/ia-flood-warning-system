@@ -7,3 +7,23 @@ geographical data.
 """
 
 from .utils import sorted_by_key  # noqa
+
+from haversine import haversine
+from .station import MonitoringStation
+
+def stations_by_distance(stations, p):
+    """Return a list of (station, distance) tuples sorted by distance
+    from p
+    Where stations is a list of MonitoringStation objects, and p is a
+    tuple of floats for a coordinate p"""
+    stationList = []
+
+    #build list of (station, distance) tuples
+    for station in stations:
+        coords = station.coord
+        distance = haversine(coords, p) # use haversine library to calculate distance in km
+        stationList.append((station.name, distance))
+    
+    #sort list by distance
+
+    return stationList
