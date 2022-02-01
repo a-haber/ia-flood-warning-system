@@ -26,6 +26,22 @@ def stations_by_distance(stations, p):
     
     #sort list by distance
     stationList = sorted_by_key(stationList, 2)
+    
+    return stationList
+
+def stations_within_radius(stations, centre, r):
+    """Return a list of all stations within radius r of a geographic
+    coordinate centre"""
+    qualifyingStations = []
+
+    # build list of stations within required radius
+    for station in stations:
+        coords = station.coord
+        distance = haversine(coords, centre) # use haversine to calculate distance in km
+        if distance < abs(r):
+            qualifyingStations.append(station.name)
+
+    return qualifyingStations
 
 def rivers_with_station(stations):
     """Given a list of station objects, returns a container list with the names of the rivers 
@@ -88,6 +104,3 @@ def rivers_by_station_number(stations, N):
                 break
 
     return rivers_sorted[:end_index+1]
-
-    return stationList
-    
