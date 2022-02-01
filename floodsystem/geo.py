@@ -28,3 +28,17 @@ def stations_by_distance(stations, p):
     stationList = sorted_by_key(stationList, 2)
 
     return stationList
+
+def stations_within_radius(stations, centre, r):
+    """Return a list of all stations within radius r of a geographic
+    coordinate centre"""
+    qualifyingStations = []
+
+    # build list of stations within required radius
+    for station in stations:
+        coords = station.coord
+        distance = haversine(coords, centre) # use haversine to calculate distance in km
+        if distance < abs(r):
+            qualifyingStations.append(station.name)
+    
+    return qualifyingStations
