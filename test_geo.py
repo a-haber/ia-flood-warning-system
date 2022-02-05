@@ -1,6 +1,6 @@
 """Test for geo module"""
 
-from floodsystem.geo import stations_by_distance, stations_within_radius
+from floodsystem.geo import rivers_with_station, stations_by_distance, stations_within_radius
 from floodsystem.stationdata import build_station_list
 from haversine import haversine
 
@@ -41,5 +41,5 @@ def test_rivers_with_station():
     rivers = rivers_with_station(stations)
     # Check if there are more stations than 900 (there should be 949 or 950, depending on the day)
     assert len(rivers) >= 900
-    # Check if river Cam is in the listed rivers
+    # Check if the river Cam is in rivers
     assert "Cam" in rivers
