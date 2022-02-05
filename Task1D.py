@@ -13,7 +13,8 @@ def demo_1():
     # List the rivers
     rivers = rivers_with_station(stations)
 
-    print(rivers)
+    print(len(rivers))
+    print(rivers[:10])
 
 
 def demo_2():
