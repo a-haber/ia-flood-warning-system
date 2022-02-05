@@ -2,7 +2,7 @@ from floodsystem.stationdata import build_station_list
 from floodsystem.geo import rivers_with_station, stations_by_river
 
 
-def demo_1():
+def rivers_with_monitoring_station():
     """Requirements for Task 1D:
     given a list of station objects,
     returns a list with the names of the rivers with a monitoring station"""
@@ -17,7 +17,7 @@ def demo_1():
     print(rivers[:10])
 
 
-def demo_2():
+def names_of_the_stations():
     """Requirements for Task 1D:
     printing the names of the stations located on the following rivers in alphabetical order"""
 
@@ -35,5 +35,5 @@ def demo_2():
 
 if __name__ == "__main__":
     print("*** Task 1D: CUED Part IA Flood Warning System ***")
-    demo_1()
-    demo_2()
+    rivers_with_monitoring_station()
+    names_of_the_stations()
