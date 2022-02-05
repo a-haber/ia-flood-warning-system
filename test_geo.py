@@ -36,10 +36,10 @@ def test_stations_within_radius():
                 break
 
 def test_rivers_with_station():
-    # Tests that the function has at least 900 rivers including Cam
+    # Tests that the function has at least 900 rivers and Allison Dyke is in rivers
     stations = build_station_list()
     rivers = rivers_with_station(stations)
     # Check if there are more stations than 900 (there should be 949 or 950, depending on the day)
     assert len(rivers) >= 900
-    # Check if the river Cam is in rivers
-    assert "Cam" in rivers
+    # Check if the Allison Dyke is in rivers
+    assert "Allison Dyke" in rivers
