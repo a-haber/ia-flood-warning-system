@@ -52,3 +52,5 @@ def test_rivers_by_station_number():
     # Checking if Thames if the river with the biggest number of stations (it should be)
     biggest_river = rivers_by_station_number(stations, 1)
     assert biggest_river[0][0] == "River Thames"
+    
+    # Milestone 1 finished – ready for marking
