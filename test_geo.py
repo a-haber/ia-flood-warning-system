@@ -1,6 +1,6 @@
 """Test for geo module"""
 
-from floodsystem.geo import rivers_with_station, stations_by_distance, stations_within_radius
+from floodsystem.geo import rivers_by_station_number, rivers_with_station, stations_by_distance, stations_within_radius
 from floodsystem.stationdata import build_station_list
 from haversine import haversine
 
@@ -43,3 +43,12 @@ def test_rivers_with_station():
     assert len(rivers) >= 900
     # Check if the Allison Dyke is in rivers
     assert "Allison Dyke" in rivers
+
+def test_rivers_by_station_number():
+    """Tests the length of a few outputs and checks order of rivers"""
+    stations = build_station_list()
+    # The length can be greater than the value of N if the next rivers have the same number of stations
+    assert len(rivers_by_station_number(stations, 1)) >= 9
+    # Checking if Thames if the river with the biggest number of stations (it should be)
+    biggest_river = rivers_by_station_number(stations, 1)
+    assert biggest_river[0][0] == "Thames"
