@@ -47,34 +47,32 @@ def test_rivers_with_station():
     assert "Allison Dyke" in rivers
 
 #Task 1E
-    def test_rivers_by_station_number(self):
-        station1 = MonitoringStation(station_id="111",
-                                     measure_id="111",
-                                     label="Station 1",
-                                     coord=(0, 1),
-                                     typical_range=(0.1, 0.4),
-                                     river="River 1",
-                                     town="Town 1")
-        station2 = MonitoringStation(station_id="222",
-                                     measure_id="222",
-                                     label="Station 2",
-                                     coord=(1, 1),
-                                     typical_range=(0.3, 0.8),
-                                     river="River 2",
-                                     town="Town 2")
-        station3 = MonitoringStation(station_id="333",
-                                     measure_id="333",
-                                     label="Station 3",
-                                     coord=(0, 3),
-                                     typical_range=(0.43, 0.88),
-                                     river="River 2",
-                                     town="Town 3")
-        station4 = MonitoringStation(station_id="444",
-                                     measure_id="444",
-                                     label="Station 4",
-                                     coord=(8, 3),
-                                     typical_range=(0.1, 0.9),
-                                     river="River 3",
-                                     town="Town 4")
-                                     
-    # Milestone 1 finished – ready for marking
+def test_rivers_by_station_number(self):
+    station1 = MonitoringStation(station_id="111",
+                                measure_id="111",
+                                label="Station 1",
+                                coord=(0, 1),
+                                typical_range=(0.1, 0.4),
+                                river="River 1",
+                                town="Town 1")
+    station2 = MonitoringStation(station_id="222",
+                                measure_id="222",
+                                label="Station 2",
+                                coord=(1, 1),
+                                typical_range=(0.3, 0.8),
+                                river="River 2",
+                                town="Town 2")
+    station3 = MonitoringStation(station_id="333",
+                                measure_id="333",
+                                label="Station 3",
+                                coord=(0, 3),
+                                typical_range=(0.43, 0.88),
+                                river="River 2",
+                                town="Town 3")
+    station4 = MonitoringStation(station_id="444",
+                                measure_id="444",
+                                label="Station 4",
+                                coord=(8, 3),
+                                typical_range=(0.1, 0.9),
+                                river="River 3",
+                                town="Town 4")
