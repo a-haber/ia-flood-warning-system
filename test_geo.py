@@ -45,12 +45,10 @@ def test_rivers_with_station():
     assert "Allison Dyke" in rivers
 
 def test_rivers_by_station_number():
-    """Tests the length of a few outputs and checks order of rivers"""
+
+    # Build a list of staions
     stations = build_station_list()
-    # The length can be greater than the value of N if the next rivers have the same number of stations
-    assert len(rivers_by_station_number(stations, 9)) >= 9
-    # Checking if Thames if the river with the biggest number of stations (it should be)
-    biggest_river = rivers_by_station_number(stations, 1)
-    assert biggest_river[0][0] == "River Thames"
+    ans = geo.rivers_by_station_number(stations, 9)
+    assert len(ans) >= 9
     
     # Milestone 1 finished – ready for marking
