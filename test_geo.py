@@ -47,35 +47,38 @@ def test_rivers_with_station():
     # Check if the Allison Dyke is in rivers
     assert "Allison Dyke" in rivers
 
-#Task 1E
-def test_rivers_by_station_number(self):
-    station1 = MonitoringStation(station_id="111",
-                                measure_id="111",
-                                label="Station 1",
-                                coord=(0, 1),
-                                typical_range=(0.1, 0.4),
-                                river="River 1",
-                                town="Town 1")
-    station2 = MonitoringStation(station_id="222",
-                                measure_id="222",
-                                label="Station 2",
-                                coord=(1, 1),
-                                typical_range=(0.3, 0.8),
-                                river="River 2",
-                                town="Town 2")
-    station3 = MonitoringStation(station_id="333",
-                                measure_id="333",
-                                label="Station 3",
-                                coord=(0, 3),
-                                typical_range=(0.43, 0.88),
-                                river="River 2",
-                                town="Town 3")
-    station4 = MonitoringStation(station_id="444",
-                                measure_id="444",
-                                label="Station 4",
-                                coord=(8, 3),
-                                typical_range=(0.1, 0.9),
-                                river="River 3",
-                                town="Town 4")
-                                
+# Task 1E
+def test_rivers_by_station_number():
+    s_id = "test-s-id"
+    m_id = "test-m-id"
+    label = "station"
+    coord = (1, 1)
+    trange = None
+    river1 = "River 1"
+    river2 = "River 2"
+    river3 = "River 3"
+    river4 = "River 4"
+    town = "Town"
+    s1 = MonitoringStation(s_id, m_id, label, coord, trange, river1, town)
+    s2 = MonitoringStation(s_id, m_id, label, coord, trange, river2, town)
+    s3 = MonitoringStation(s_id, m_id, label, coord, trange, river1, town)
+    s4 = MonitoringStation(s_id, m_id, label, coord, trange, river3, town)
+    s5 = MonitoringStation(s_id, m_id, label, coord, trange, river2, town)
+    s6 = MonitoringStation(s_id, m_id, label, coord, trange, river1, town)
+    s7 = MonitoringStation(s_id, m_id, label, coord, trange, river3, town)
+    s8 = MonitoringStation(s_id, m_id, label, coord, trange, river4, town)
+    stations = [s1, s2, s3, s4, s5, s6, s7, s8]
+
+    assert len(rivers_by_station_number(stations, 1)) == 1
+
+    river_list = rivers_by_station_number(stations, 2)
+
+    # Multiple entries with same number in Nth position
+    assert len(river_list) == 3
+
+    assert "River 4" not in [item[0] for item in river_list]
+
+    for river in ["River 1", "River 2", "River 3"]:
+        assert river in [item[0] for item in river_list]
+
 #  Milestone 1 finished – ready for marking
