@@ -13,5 +13,5 @@ def stations_level_over_threshold(stations, tol):
             if station.relative_water_level(station.latest_level) > tol:
                 station_name_water_level = station.name, station.relative_water_level(station.latest_level)
                 flooded_stations.append(station_name_water_level)
-    sorted_flooded_stations = sorted_by_key(a, 1, reverse=True)
+    sorted_flooded_stations = sorted_by_key(flooded_stations, 1, reverse=True)
     return sorted_flooded_stations
