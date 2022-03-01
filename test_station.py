@@ -4,7 +4,6 @@
 """Unit test for the station module"""
 
 from floodsystem.station import MonitoringStation, inconsistent_typical_range_stations   
-import pytest
 from floodsystem.stationdata import build_station_list, update_water_levels
 import floodsystem.flood as flood
 
@@ -76,4 +75,4 @@ def test_stations_highest_rel_level():
 
     shortlist = flood.stations_highest_rel_level(stations, 10)
     assert len(shortlist) == 10
-    assert shortlist[0].relative_water_level() >= shortlist[1].relative_water_level()
+    assert shortlist[0][1] >= shortlist[1][1]
