@@ -75,4 +75,4 @@ def test_stations_highest_rel_level():
 
     shortlist = flood.stations_highest_rel_level(stations, 10)
     assert len(shortlist) == 10
-    assert shortlist[0][1] >= shortlist[1][1]
+    assert shortlist[0].relative_water_level(shortlist[0].latest_level) >= shortlist[1].relative_water_level(shortlist[1].latest_level)

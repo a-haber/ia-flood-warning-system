@@ -31,9 +31,13 @@ def stations_highest_rel_level(stations, N):
 
     for station in stations:
         if station.relative_water_level(station.latest_level) is not None:
-            station_name_water_level = station.name, station.relative_water_level(station.latest_level)
+            station_name_water_level = station, station.relative_water_level(station.latest_level)
             stations_relative_level.append(station_name_water_level)
 
-    sorted_stations_relative_level = sorted_by_key(stations_relative_level, 1, reverse=True)
+    sorted_stations_relative_level = sorted_by_key(stations_relative_level, 1, reverse=True)[:N]
+    print(sorted_stations_relative_level)
+    newlist = []
+    for n in sorted_stations_relative_level:
+        newlist.append(n[0])
 
-    return sorted_stations_relative_level[:N]
+    return newlist

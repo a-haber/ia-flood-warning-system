@@ -7,7 +7,7 @@ def run():
     update_water_levels(stations)
     high_risk_stations = stations_highest_rel_level(stations, 10)
     for station in high_risk_stations:
-        print(station)
+        print(station.name, station.relative_water_level(station.latest_level))
 
 
 if __name__ == "__main__":
