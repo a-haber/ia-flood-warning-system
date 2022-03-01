@@ -18,14 +18,11 @@ def run():
     dt = 10
 
     # Plot water levels over past 10 days for these stations
-
-    # NB - NEED TO CHANGE THIS ONCE stations_highest_rel_level IS FIXED
     for station in highest_waterlevel_stations:
-        for i in stations:
-            if i.name == station[0]:
-                measure_id = i.measure_id
-                dates, levels = fetch_measure_levels(measure_id, datetime.timedelta(days=dt)) # WILL NEED TO CHANGE station[0] TO station.measure_id 
-                plot_water_levels(i, dates, levels)
+        measure_id = station.measure_id
+        dates, levels = fetch_measure_levels(measure_id, datetime.timedelta(days=dt))
+        plot_water_levels(station, dates, levels)
+
 
 
     
