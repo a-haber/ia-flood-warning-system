@@ -35,7 +35,7 @@ def stations_highest_rel_level(stations, N):
             stations_relative_level.append(station_name_water_level)
 
     sorted_stations_relative_level = sorted_by_key(stations_relative_level, 1, reverse=True)[:N]
-    print(sorted_stations_relative_level)
+  
     newlist = []
     for n in sorted_stations_relative_level:
         newlist.append(n[0])
