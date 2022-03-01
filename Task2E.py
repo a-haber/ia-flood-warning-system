@@ -17,11 +17,17 @@ def run():
     # Desired number of days to plot is 10
     dt = 10
 
+
     # Plot water levels over past 10 days for these stations
+    dateslist = []
+    levelslist = []
     for station in highest_waterlevel_stations:
         measure_id = station.measure_id
         dates, levels = fetch_measure_levels(measure_id, datetime.timedelta(days=dt))
-        plot_water_levels(station, dates, levels)
+        dateslist.append(dates)
+        levelslist.append(levels)
+    
+    plot_water_levels(highest_waterlevel_stations, dateslist, levelslist)
 
 
 
