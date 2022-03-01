@@ -1,5 +1,5 @@
 from floodsystem import stationdata
-from utils import sorted_by_key
+from floodsystem.utils import sorted_by_key
 
 def stations_level_over_threshold(stations, tol):
 
