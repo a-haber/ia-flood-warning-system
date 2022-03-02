@@ -27,7 +27,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install  flake8 matplotlib pytest requests
           pip install haversine
-          pip install matplotlib
 
       # - name: Lint with flake8
       #   run: flake8 --statistics *.py
