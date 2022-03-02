@@ -5,7 +5,7 @@ from floodsystem.stationdata import build_station_list
 from floodsystem.datafetcher import fetch_measure_levels
 from floodsystem.analysis import polyfit
 import numpy
-import matplotlib
+import matplotlib.dates
 
 def test_polyfit():
     # Build list of dates and levels

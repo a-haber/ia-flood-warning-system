@@ -1,4 +1,4 @@
-import matplotlib
+import matplotlib.dates
 import numpy as np
 
 def polyfit(dates, levels, p):
