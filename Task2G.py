@@ -32,21 +32,51 @@ def run():
 
             percentage = station.relative_water_level(station.latest_level)
 
-            if percentage >= 1.5:
-                severe.append(station.name)
-            elif percentage >= 1.2:
-                high.append(station.name)
-            elif percentage >= 0.9:
-                moderate.append(station.name)
+            # Some stations have .town = None
+            # Only include these stations if the flood warning is high/severe
+            if station.town is None and percentage >= 1.2:
+                station.town = "No town data - station: " + station.name
+            
+            if station.town in severe:
+                pass
+            elif station.town in high:
+                if percentage >= 1.5:
+                    severe.append(station.town)
+                    high.remove(station.town)
+            elif station.town in moderate:
+                if percentage >= 1.5:
+                    severe.append(station.town)
+                    moderate.remove(station.town)
+                elif percentage >= 1.2:
+                    high.append(station.town)
+                    moderate.remove(station.town)
+            elif station.town in low:
+                if percentage >= 1.5:
+                    severe.append(station.town)
+                    low.remove(station.town)
+                elif percentage >= 1.2:
+                    high.append(station.town)
+                    low.remove(station.town)
+                elif percentage >= 0.9:
+                    moderate.append(station.town)
+                    low.remove(station.town)
             else:
-                low.append(station.name)
+                if percentage >= 1.5:
+                    severe.append(station.town)
+                elif percentage >= 1.2:
+                    high.append(station.town)
+                elif percentage >= 0.9:
+                    moderate.append(station.town)
+                elif percentage < 0.9:
+                    low.append(station.town)
+                else: no_data.append(station.town)
         else:
-            no_data.append(station.name)
+            pass
         
         # For stations identified as high risk, estimate if water level
         # is rising or falling using the polyfit best fit function
         # Then, if water level rising, upgrade warning level to severe
-        if station.name in high:
+        if station.town in high:
             try:
                 # Create best-fit polynomial to approximate water level data over past 5 days
                 measure_id = station.measure_id
@@ -57,8 +87,8 @@ def run():
                 gradient = derivative(matplotlib.dates.date2num(dates[0]) - offset) # Evaluate gradient
                 # Gradients which are positive but close to 0 are ignored here
                 if gradient > 1:
-                    high.remove(station.name)
-                    severe.append(station.name)
+                    high.remove(station.town)
+                    severe.append(station.town)
             # Some stations have faulty data - no useful polynomial fit, so leave in current warning category
             except IndexError:
                 pass
@@ -67,14 +97,12 @@ def run():
     
     severe.sort()
     high.sort()
-    moderate.sort()
-    low.sort()
-    no_data.sort()
+
     print(f"Severe Risk:\n{severe}\n")
     print(f"High Risk:\n{high}\n")
-    print(f"Moderate Risk:\n{moderate}\n")
-    print(f"Low Risk:\n{len(low)} stations\n")
-    print(f"No Reliable Data:\n{len(no_data)} stations\n")
+    print(f"Moderate Risk:\n{len(moderate)} towns\n")
+    print(f"Low Risk:\n{len(low)} towns\n")
+    print(f"No Reliable Data:\n{len(no_data)} towns\n")
 
 if __name__ == "__main__":
     run()
