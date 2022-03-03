@@ -13,7 +13,7 @@ def stations_level_over_threshold(stations, tol):
     for station in stations:
         if station.relative_water_level(station.latest_level) is not None:
             if station.relative_water_level(station.latest_level) > tol:
-                station_name_water_level = station.name, station.relative_water_level(station.latest_level)
+                station_name_water_level = (station, station.relative_water_level(station.latest_level))
                 flooded_stations.append(station_name_water_level)
 
     sorted_flooded_stations = sorted_by_key(flooded_stations, 1, reverse=True)
